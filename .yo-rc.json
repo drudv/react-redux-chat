@@ -1,0 +1,7 @@
+{
+  "generator-react-webpack": {
+    "appName": "react-redux-chat",
+    "style": "scss",
+    "postcss": true
+  }
+}
