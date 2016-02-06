@@ -37,14 +37,18 @@ export const ActionCreators = {
   setActiveChannel(channel) {
     return {
       type: ActionTypes.ACTIVATE_CHANNEL,
-      channel: channel
+      payload: {
+        channel: channel
+      }
     };
   },
 
   sendMessage(message) {
     return {
       type: ActionTypes.SEND_MESSAGE,
-      message: message
+      payload: {
+        message: message
+      }
     };
   }
 };
