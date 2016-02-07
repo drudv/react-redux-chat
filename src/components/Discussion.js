@@ -26,6 +26,8 @@ export default React.createClass({
     return this.props.messages.map((message) =>
       <Message
         key={message.get('id')}
+        user={message.get('user')}
+        created={message.get('created')}
         text={message.get('body')} />
     ).toJS();
   },

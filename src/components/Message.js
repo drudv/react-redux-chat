@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import Immutable from 'immutable';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 export default React.createClass({
@@ -8,14 +9,17 @@ export default React.createClass({
   mixins: [PureRenderMixin],
 
   propTypes: {
-    text: React.PropTypes.string.isRequired
+    text: React.PropTypes.string.isRequired,
+    user: React.PropTypes.instanceOf(Immutable.Map).isRequired,
+    created: React.PropTypes.string.isRequired
   },
 
   render() {
-    let {text, ...props} = this.props;
+    let {text, user, created, ...props} = this.props;
+    let name = user.get('name');
     return (
       <p {...props}>
-        {text}
+        {created} {name}: {text}
       </p>
     );
   }

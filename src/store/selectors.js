@@ -1,6 +1,8 @@
 'use strict';
 
+import Immutable from 'immutable';
 import {createSelector} from 'reselect';
+import makeMessageReducer from '../utils/makeMessageReducer';
 
 const activeChannelSelector = (state) => state.get('activeChannel');
 const channelsSelector = (state) => state.get('channels');
@@ -20,11 +22,12 @@ export const currentChannelSelector = createSelector(
 
 export const currentMessagesSelector = createSelector(
   activeChannelSelector,
+  usersSelector,
   messagesSelector,
-  (activeChannel, messages) =>
-    messages.filter(
-        (message) =>
-          message.get('channel') == activeChannel
+  (activeChannel, users, messages) =>
+    messages.reduce(
+      makeMessageReducer(activeChannel, users),
+      Immutable.List()
     )
 );
 
