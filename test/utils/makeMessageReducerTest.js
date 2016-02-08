@@ -49,7 +49,9 @@ describe('makeMessageReducer', () => {
           name: 'John Doe'
         },
         body: 'message1',
-        created: '2016-02-03T12:00:00.000Z'
+        created: '2016-02-03T12:00:00.000Z',
+        date: 'February 3rd, 2016',
+        time: '1:00 PM'
       },
       {
         id: 'e14d6845-d61c-403f-ab94-ed534c6a3e62',
@@ -59,7 +61,8 @@ describe('makeMessageReducer', () => {
           name: 'Richard Roe'
         },
         body: 'message3',
-        created: '2016-02-03T15:00:00.000Z'
+        created: '2016-02-03T15:00:00.000Z',
+        time: '4:00 PM'
       }
     ]);
     expect(Immutable.is(result, expectedResult)).to.be.true;

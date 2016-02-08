@@ -8,7 +8,17 @@ const activeChannelSelector = (state) => state.get('activeChannel');
 const channelsSelector = (state) => state.get('channels');
 const messagesSelector = (state) => state.get('messages');
 const userSelector = (state) => state.get('user');
-const usersSelector = (state) => state.get('users');
+const rawUsersSelector = (state) => state.get('users');
+
+export const usersSelector = createSelector(
+  userSelector,
+  rawUsersSelector,
+  (currentUserId, users) =>
+    users.map(
+      (user) =>
+        user.set('self', currentUserId == user.get('id'))
+    )
+);
 
 export const currentChannelSelector = createSelector(
   activeChannelSelector,

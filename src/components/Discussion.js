@@ -8,7 +8,6 @@ import Message from './Message';
 
 const Styles = {
   Root: {
-    padding: '0px 24px',
     flexGrow: 1,
     overflowY: 'auto'
   }
@@ -27,8 +26,10 @@ export default React.createClass({
       <Message
         key={message.get('id')}
         user={message.get('user')}
-        created={message.get('created')}
-        text={message.get('body')} />
+        date={message.get('date')}
+        time={message.get('time')}
+        text={message.get('body')}
+        own={message.get('own')} />
     ).toJS();
   },
 
