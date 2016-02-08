@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {LeftNav, MenuItem} from 'material-ui';
+import {LeftNav, MenuItem, CircularProgress} from 'material-ui';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 import Immutable from 'immutable';
 import NewMessageField from './NewMessageField';
@@ -44,8 +44,8 @@ export default React.createClass({
     users: React.PropTypes.instanceOf(Immutable.List).isRequired,
     channels: React.PropTypes.instanceOf(Immutable.List).isRequired,
     currentMessages: React.PropTypes.instanceOf(Immutable.List).isRequired,
-    currentChannel: React.PropTypes.instanceOf(Immutable.Map).isRequired,
-    currentUser: React.PropTypes.instanceOf(Immutable.Map).isRequired,
+    currentChannel: React.PropTypes.instanceOf(Immutable.Map),
+    currentUser: React.PropTypes.instanceOf(Immutable.Map),
     setActiveChannel: React.PropTypes.func.isRequired,
     sendMessage: React.PropTypes.func.isRequired
   },
@@ -76,6 +76,12 @@ export default React.createClass({
   },
 
   render() {
+    let {currentUser, currentChannel} = this.props;
+    if (!currentUser || !currentChannel) {
+      return (
+        <CircularProgress />
+      );
+    }
     return (
       <div style={Styles.Root}>
         <div style={Styles.Sidebar}>

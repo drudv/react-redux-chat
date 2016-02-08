@@ -3,12 +3,12 @@
 import moment from 'moment';
 import uuid from 'uuid';
 
-export default function composeMessage({body, user, channel}) {
+export default function composeMessage({id, body, user, channel, created}) {
   return {
-    id: uuid.v1(),
+    id: id || uuid.v1(),
     body,
     user,
     channel,
-    created: moment().format()
+    created: moment(created).format()
   };
 }

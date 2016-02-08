@@ -15,7 +15,7 @@ describe('store reducer', () => {
     const nextState = reducer(undefined, action);
     const expectedState = Immutable.fromJS(defaults.DEFAULT_STATE);
     expect(Immutable.is(nextState, expectedState)).to.be.true;
-  })
+  });
 
   it('sets active channel', () => {
     const initialState = Immutable.fromJS({

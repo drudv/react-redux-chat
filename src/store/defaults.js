@@ -4,6 +4,15 @@ import Immutable from 'immutable';
 
 export default {
   DEFAULT_STATE: Immutable.fromJS({
+    channels: [],
+    activeChannel: null,
+    users: [],
+    user: null,
+    messages: []
+  })
+
+/*
+  DEFAULT_STATE: Immutable.fromJS({
     channels: [
       {id: 1, name: 'channel 1'},
       {id: 2, name: 'channel 2'},
@@ -55,4 +64,6 @@ export default {
       }
     ]
   })
+*/
+
 };
