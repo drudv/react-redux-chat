@@ -1,6 +1,7 @@
 'use strict';
 
 let path = require('path');
+let webpack = require('webpack');
 let srcPath = path.join(__dirname, '/../src/');
 
 let baseConfig = require('./base');
@@ -46,6 +47,7 @@ module.exports = {
       components: srcPath + 'components/',
       sources: srcPath + 'sources/',
       utils: srcPath + 'utils/',
+      demo: srcPath + 'demo/',
       store: srcPath + 'store/',
       styles: srcPath + 'styles/',
       config: srcPath + 'config/' + process.env.REACT_WEBPACK_ENV
@@ -55,6 +57,11 @@ module.exports = {
     new BowerWebpackPlugin({
       searchResolveModulesDirectories: false
     }),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("[name].css"),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'test')
+      }
+    })
   ]
 };

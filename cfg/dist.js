@@ -26,7 +26,12 @@ let config = Object.assign({}, baseConfig, {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("[name].css")
+    new ExtractTextPlugin("[name].css"),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+      }
+    })
   ],
   module: defaultSettings.getDefaultModules()
 });
@@ -38,7 +43,8 @@ config.module.loaders.push({
   include: [].concat(
     config.additionalPaths,
     [ path.join(__dirname, '/../src') ]
-  )
+  ),
+  exclude: [path.join(__dirname, '/../src/demo')]
 });
 
 module.exports = config;
