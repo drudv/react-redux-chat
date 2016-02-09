@@ -15,7 +15,7 @@ export default function prepopulate(state) {
   ].map((name, id) => ({id, name}));
 
   let from = moment('2016-02-03T14:03:02.782Z');
-  const messages = Array(1000).map(
+  const messages = Array.apply(null, Array(1000)).map(
     (_, i) => composeMessage({
       channel: channels[i % channels.length].id,
       user: users[i % users.length].id,

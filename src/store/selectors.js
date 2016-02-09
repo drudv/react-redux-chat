@@ -34,11 +34,12 @@ export const currentMessagesSelector = createSelector(
   activeChannelSelector,
   usersSelector,
   messagesSelector,
-  (activeChannel, users, messages) =>
-    messages.reduce(
+  (activeChannel, users, messages) => {
+    return messages.reduce(
       makeMessageReducer(activeChannel, users),
       Immutable.List()
     )
+  }
 );
 
 export const currentUserSelector = createSelector(
